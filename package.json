@@ -12,10 +12,14 @@
   "engines": {
     "node": ">=0.10.0"
   },
+  "bin": {
+    "github-repositories": "cli.js"
+  },
   "scripts": {
     "test": "node test.js"
   },
   "files": [
+    "cli.js",
     "index.js"
   ],
   "keywords": [

@@ -49,6 +49,23 @@ Type: `function`
 
 `data` contains an array with all Github repos.
 
+## CLI
+
+```sh
+$ npm install --global github-repositories
+```
+
+```sh
+$ github-repositories --help
+
+Usage
+  $ github-repos kevva
+  $ github-repos kevva --token 523ef69119eadg12
+
+Options
+  -t, --token    Github token to authenticate with
+```
+
 ## License
 
 MIT © [Kevin Mårtensson](https://github.com/kevva)
