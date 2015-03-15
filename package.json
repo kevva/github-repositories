@@ -1,9 +1,9 @@
 {
-  "name": "github-repos",
+  "name": "github-repositories",
   "version": "1.0.0",
   "description": "Get all Github repos from a user",
   "license": "MIT",
-  "repository": "kevva/github-repos",
+  "repository": "kevva/github-repositories",
   "author": {
     "name": "Kevin Mårtensson",
     "email": "kevinmartensson@gmail.com",

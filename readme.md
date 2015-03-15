@@ -1,17 +1,17 @@
-# github-repos [![Build Status](http://img.shields.io/travis/kevva/github-repos.svg?style=flat)](https://travis-ci.org/kevva/github-repos)
+# github-repositories [![Build Status](http://img.shields.io/travis/kevva/github-repositories.svg?style=flat)](https://travis-ci.org/kevva/github-repositories)
 
 > Get all Github repos from a user
 
 ## Install
 
 ```bash
-$ npm install --save github-repos
+$ npm install --save github-repositories
 ```
 
 ## Usage
 
 ```js
-var githubRepos = require('github-repos');
+var githubRepos = require('github-repositories');
 
 githubRepos('kevva', {
 	username: 'johndoe',
