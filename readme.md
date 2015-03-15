@@ -23,7 +23,7 @@ githubRepos('kevva', {
 
 	console.log(data);
 	//=> [{id: 29258368, name: 'animal-sounds', full_name: 'kevva/animal-sounds', ...}, ...]
-})
+});
 ```
 
 ## API
