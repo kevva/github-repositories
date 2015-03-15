@@ -15,7 +15,7 @@ function getRepos(user, headers, cb) {
 
 		ret = ret.concat(JSON.parse(data));
 
-		if (res.headers.link.indexOf('next') !== -1) {
+		if (res.headers.link && res.headers.link.indexOf('next') !== -1) {
 			page++;
 			getRepos(user, headers, cb);
 			return;
