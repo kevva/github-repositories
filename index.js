@@ -27,15 +27,16 @@ function getRepos(user, headers, cb) {
 
 module.exports = function (user, opts, cb) {
 	opts = opts || {};
+	var headers = {Accept: 'application/vnd.github.v3+json'};
 
-	if (!opts.token) {
-		throw new Error('Token is required to authenticate with the Github API');
+	if (typeof opts === 'function') {
+		cb = opts;
+		opts = {};
 	}
 
-	var headers = {
-		Accept: 'application/vnd.github.v3+json',
-		Authorization: 'token ' + opts.token
-	};
+	if (opts.token) {
+		headers.Authorization = 'token ' + opts.token;
+	}
 
 	getRepos(user, headers, function (err, data) {
 		if (err) {

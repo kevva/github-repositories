@@ -13,7 +13,7 @@ $ npm install --save github-repositories
 ```js
 var githubRepos = require('github-repositories');
 
-githubRepos('kevva', {token: 'd6540203cb248a'}, function (err, data) {
+githubRepos('kevva', function (err, data) {
 	if (err) {
 		throw err;
 	}
@@ -37,7 +37,11 @@ Username to fetch repos from.
 
 Type: `string`
 
-Token to authenticate with. If you don't have one you can generate a new one [here](https://github.com/settings/tokens/new).
+Token to authenticate with. Use this to increase the request count. Github supports
+up to 60 unauthenticated request per hour. This is also required for accessing private
+repos.
+
+If you don't have a token you can generate a new one [here](https://github.com/settings/tokens/new).
 
 #### cb(err, data)
 
