@@ -13,10 +13,7 @@ $ npm install --save github-repositories
 ```js
 var githubRepos = require('github-repositories');
 
-githubRepos('kevva', {
-	username: 'johndoe',
-	password: 'foobar'
-}, function (err, data) {
+githubRepos('kevva', {token: 'd6540203cb248a'}, function (err, data) {
 	if (err) {
 		throw err;
 	}
@@ -36,17 +33,11 @@ Type: `string`
 
 Username to fetch repos from.
 
-#### opts.username
+#### opts.token
 
 Type: `string`
 
-Username to authenticate with.
-
-#### opts.password
-
-Type: `string`
-
-Password to authenticate with.
+Token to authenticate with. If you don't have one you can generate a new one [here](https://github.com/settings/tokens/new).
 
 #### cb(err, data)
 
