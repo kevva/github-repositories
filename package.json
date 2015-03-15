@@ -1,0 +1,34 @@
+{
+  "name": "github-repos",
+  "version": "1.0.0",
+  "description": "Get all Github repos from a user",
+  "license": "MIT",
+  "repository": "kevva/github-repos",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "https://github.com/kevva"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "api",
+    "cli",
+    "github",
+    "repo",
+    "repositories"
+  ],
+  "dependencies": {
+    "got": "^2.4.0"
+  },
+  "devDependencies": {
+    "ava": "^0.0.4"
+  }
+}
