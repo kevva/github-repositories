@@ -59,8 +59,8 @@ $ npm install --global github-repositories
 $ github-repositories --help
 
 Usage
-  $ github-repos kevva
-  $ github-repos kevva --token 523ef69119eadg12
+  $ github-repositories kevva
+  $ github-repositories kevva --token 523ef69119eadg12
 
 Options
   -t, --token    Github token to authenticate with
