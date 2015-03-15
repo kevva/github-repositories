@@ -2,8 +2,8 @@
 'use strict';
 
 var chalk = require('chalk');
-var githubRepos = require('./');
 var meow = require('meow');
+var githubRepos = require('./');
 
 var cli = meow({
 	help: [
