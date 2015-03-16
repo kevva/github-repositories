@@ -27,7 +27,11 @@ function getRepos(user, headers, cb) {
 
 module.exports = function (user, opts, cb) {
 	opts = opts || {};
-	var headers = {Accept: 'application/vnd.github.v3+json'};
+
+	var headers = {
+		Accept: 'application/vnd.github.v3+json',
+		'User-Agent': 'https://github.com/kevva/github-repositories'
+	};
 
 	if (typeof opts === 'function') {
 		cb = opts;
