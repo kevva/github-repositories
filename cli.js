@@ -12,12 +12,17 @@ var cli = meow({
 		'  $ github-repositories kevva --token 523ef69119eadg12',
 		'',
 		'Options',
-		'  -t, --token    Github token to authenticate with'
+		'  -t, --token    GitHub authentication token'
 	].join('\n')
 }, {
 	string: ['token'],
 	alias: {t: 'token'}
 });
+
+if (!cli.input[0]) {
+	console.error('User required');
+	process.exit(1);
+}
 
 githubRepos(cli.input[0], cli.flags, function (err, data) {
 	if (err) {

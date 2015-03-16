@@ -1,6 +1,7 @@
 # github-repositories [![Build Status](http://img.shields.io/travis/kevva/github-repositories.svg?style=flat)](https://travis-ci.org/kevva/github-repositories)
 
-> Get all Github repos from a user
+> Get all GitHub repos from a user
+
 
 ## Install
 
@@ -8,32 +9,31 @@
 $ npm install --save github-repositories
 ```
 
+
 ## Usage
 
 ```js
 var githubRepos = require('github-repositories');
 
 githubRepos('kevva', function (err, data) {
-	if (err) {
-		throw err;
-	}
-
 	console.log(data);
 	//=> [{id: 29258368, name: 'animal-sounds', full_name: 'kevva/animal-sounds', ...}, ...]
 });
 ```
 
+
 ## API
 
-### githubRepos(user, [opts], cb)
+### githubRepos(user, [options], callback)
 
 #### user
 
+*Required*  
 Type: `string`
 
 Username to fetch repos from.
 
-#### opts.token
+#### options.token
 
 Type: `string`
 
@@ -43,11 +43,16 @@ repos.
 
 If you don't have a token you can generate a new one [here](https://github.com/settings/tokens/new).
 
-#### cb(err, data)
+#### callback(err, data)
 
 Type: `function`
 
-`data` contains an array with all Github repos.
+##### data
+
+Type: `array`
+
+Contains an array with all Github repos.
+
 
 ## CLI
 
@@ -58,13 +63,14 @@ $ npm install --global github-repositories
 ```sh
 $ github-repositories --help
 
-Usage
-  $ github-repositories kevva
-  $ github-repositories kevva --token 523ef69119eadg12
+  Usage
+    $ github-repositories kevva
+    $ github-repositories kevva --token 523ef69119eadg12
 
-Options
-  -t, --token    Github token to authenticate with
+  Options
+    -t, --token    GitHub authentication token
 ```
+
 
 ## License
 

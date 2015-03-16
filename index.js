@@ -33,6 +33,10 @@ module.exports = function (user, opts, cb) {
 		'User-Agent': 'https://github.com/kevva/github-repositories'
 	};
 
+	if (typeof user !== 'string') {
+		throw new Error('User is required');
+	}
+
 	if (typeof opts === 'function') {
 		cb = opts;
 		opts = {};
