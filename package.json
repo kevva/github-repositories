@@ -30,7 +30,9 @@
     "repositories"
   ],
   "dependencies": {
-    "got": "^2.4.0"
+    "chalk": "^1.0.0",
+    "got": "^2.4.0",
+    "meow": "^3.1.0"
   },
   "devDependencies": {
     "ava": "^0.0.4"
