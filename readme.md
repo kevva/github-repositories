@@ -5,7 +5,7 @@
 
 ## Install
 
-```bash
+```
 $ npm install --save github-repositories
 ```
 
@@ -56,11 +56,11 @@ Contains an array with all Github repos.
 
 ## CLI
 
-```sh
+```
 $ npm install --global github-repositories
 ```
 
-```sh
+```
 $ github-repositories --help
 
   Usage

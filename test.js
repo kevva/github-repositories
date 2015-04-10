@@ -1,7 +1,7 @@
 'use strict';
 
-var githubRepos = require('./');
 var test = require('ava');
+var githubRepos = require('./');
 
 test('user with more than 100 repos', function (t) {
 	t.plan(2);
@@ -9,7 +9,7 @@ test('user with more than 100 repos', function (t) {
 
 	githubRepos('kevva', {token: token}, function (err, data) {
 		t.assert(!err, err);
-		t.assert(data.length);
+		t.assert(data.length, data.length);
 	});
 });
 
@@ -19,6 +19,6 @@ test('user with lower than 100 repos', function (t) {
 
 	githubRepos('octocat', {token: token}, function (err, data) {
 		t.assert(!err, err);
-		t.assert(data.length);
+		t.assert(data.length, data.length);
 	});
 });
