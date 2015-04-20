@@ -1,4 +1,4 @@
-# github-repositories [![Build Status](http://img.shields.io/travis/kevva/github-repositories.svg?style=flat)](https://travis-ci.org/kevva/github-repositories)
+# github-repositories [![Build Status](https://travis-ci.org/kevva/github-repositories.svg?branch=master)](https://travis-ci.org/kevva/github-repositories)
 
 > Get all GitHub repos from a user
 
