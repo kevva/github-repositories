@@ -7,24 +7,23 @@
   "author": {
     "name": "Kevin Mårtensson",
     "email": "kevinmartensson@gmail.com",
-    "url": "https://github.com/kevva"
+    "url": "github.com/kevva"
   },
   "engines": {
     "node": ">=0.10.0"
   },
-  "bin": {
-    "github-repositories": "cli.js"
-  },
+  "bin": "cli.js",
   "scripts": {
     "test": "node test.js"
   },
   "files": [
-    "cli.js",
-    "index.js"
+    "index.js",
+    "cli.js"
   ],
   "keywords": [
-    "api",
+    "cli-app",
     "cli",
+    "api",
     "github",
     "repo",
     "repositories"
