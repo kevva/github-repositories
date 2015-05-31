@@ -66,9 +66,11 @@ $ github-repositories --help
   Usage
     $ github-repositories kevva
     $ github-repositories kevva --token 523ef69119eadg12
+    $ github-repositories kevva -f
 
   Options
     -t, --token    GitHub authentication token
+    -f, --hl-forks Highlight forks
 ```
 
 
