@@ -10,13 +10,15 @@ var cli = meow({
 		'Usage',
 		'  $ github-repositories kevva',
 		'  $ github-repositories kevva --token 523ef69119eadg12',
+		'  $ github-repositories kevva -f',
 		'',
 		'Options',
-		'  -t, --token    GitHub authentication token'
+		'  -t, --token    GitHub authentication token',
+		'  -f, --hl-forks Highlight forks'
 	].join('\n')
 }, {
 	string: ['token'],
-	alias: {t: 'token'}
+	alias: {t: 'token', f:'hl-forks'}
 });
 
 if (!cli.input[0]) {
@@ -31,6 +33,10 @@ githubRepos(cli.input[0], cli.flags, function (err, data) {
 	}
 
 	data.forEach(function (repo) {
-		console.log(repo.name + ' ' + chalk.dim(repo.html_url));
+		var color = chalk.dim
+		if(cli.flags.f && repo.fork) {
+			color = chalk.bold.blue
+		}
+		console.log(repo.name + ' ' + color(repo.html_url));
 	});
 });
