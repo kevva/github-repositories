@@ -32,7 +32,7 @@ githubRepos(cli.input[0], cli.flags, function (err, data) {
 
 	data.forEach(function (repo) {
 		if (repo.fork) {
-			repo.name = repo.name + chalk.dim(' (fork)');
+			repo.name += chalk.dim(' (fork)');
 		}
 
 		console.log(repo.name + ' ' + chalk.dim(repo.html_url));
