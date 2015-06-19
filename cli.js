@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 'use strict';
-
 var chalk = require('chalk');
 var meow = require('meow');
 var githubRepos = require('./');
@@ -13,7 +12,7 @@ var cli = meow({
 		'',
 		'Options',
 		'  -t, --token    GitHub authentication token'
-	].join('\n')
+	]
 }, {
 	string: ['token'],
 	alias: {t: 'token'}
