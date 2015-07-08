@@ -30,8 +30,9 @@ test('two requests should return same data', function (t) {
 	githubRepos('octocat', {token: token}, function (err, data1) {
 		t.assert(!err, err);
 		t.assert(data1.length, data1.length);
+
 		githubRepos('octocat', {token: token}, function (err, data2) {
-		t.assert(!err, err);
+			t.assert(!err, err);
 			t.assert(data2.length, data2.length);
 			t.assert(data1.length === data2.length);
 		});

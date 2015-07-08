@@ -1,28 +1,32 @@
 'use strict';
 
 var ghGot = require('gh-got');
-var page = 1;
-var ret = [];
 
 function getRepos(user, opts, cb) {
-	var url = 'users/' + user + '/repos?&per_page=100&page=' + page;
+	var page = 1;
+	var ret = [];
 
-	ghGot(url, opts, function (err, data, res) {
-		if (err) {
-			cb(err);
-			return;
-		}
+	(function loop() {
+		var url = 'users/' + user + '/repos?&per_page=100&page=' + page;
 
-		ret = ret.concat(data);
+		ghGot(url, opts, function (err, data, res) {
+			if (err) {
+				cb(err);
+				return;
+			}
 
-		if (res.headers.link && res.headers.link.indexOf('next') !== -1) {
-			page++;
-			getRepos(user, opts, cb);
-			return;
-		}
+			ret = ret.concat(data);
 
-		cb(null, ret);
-	});
+			if (res.headers.link && res.headers.link.indexOf('next') !== -1) {
+				page++;
+				loop();
+				return;
+			}
+
+			cb(null, ret);
+		});
+	}());
+
 }
 
 module.exports = function (user, opts, cb) {
