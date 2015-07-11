@@ -1,5 +1,4 @@
 'use strict';
-
 var ghGot = require('gh-got');
 
 function getRepos(user, opts, cb) {
