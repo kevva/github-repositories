@@ -11,11 +11,23 @@ var cli = meow({
 		'  $ github-repositories kevva --token 523ef69119eadg12',
 		'',
 		'Options',
-		'  -t, --token    GitHub authentication token'
+		'  -f, --forks      Only list forks',
+		'  -s, --sources    Only list sources',
+		'  -t, --token      GitHub authentication token'
 	]
 }, {
-	string: ['token'],
-	alias: {t: 'token'}
+	boolean: [
+		'forks',
+		'sources'
+	],
+	string: [
+		'token'
+	],
+	alias: {
+		f: 'forks',
+		s: 'sources',
+		t: 'token'
+	}
 });
 
 if (!cli.input[0]) {
@@ -30,7 +42,15 @@ githubRepos(cli.input[0], cli.flags, function (err, data) {
 	}
 
 	data.forEach(function (repo) {
-		if (repo.fork) {
+		if (cli.flags.forks && !repo.fork) {
+			return;
+		}
+
+		if (cli.flags.sources && repo.fork) {
+			return;
+		}
+
+		if (!cli.flags.forks && !cli.flags.forks && repo.fork) {
 			repo.name += chalk.dim(' (fork)');
 		}
 
