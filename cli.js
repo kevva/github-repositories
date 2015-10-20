@@ -4,18 +4,16 @@ var chalk = require('chalk');
 var meow = require('meow');
 var githubRepos = require('./');
 
-var cli = meow({
-	help: [
-		'Usage',
-		'  $ github-repositories kevva',
-		'  $ github-repositories kevva --token 523ef69119eadg12',
-		'',
-		'Options',
-		'  -f, --forks      Only list forks',
-		'  -s, --sources    Only list sources',
-		'  -t, --token      GitHub authentication token'
-	]
-}, {
+var cli = meow([
+	'Usage',
+	'  $ github-repositories kevva',
+	'  $ github-repositories kevva --token 523ef69119eadg12',
+	'',
+	'Options',
+	'  -f, --forks      Only list forks',
+	'  -s, --sources    Only list sources',
+	'  -t, --token      GitHub authentication token'
+], {
 	boolean: [
 		'forks',
 		'sources'
