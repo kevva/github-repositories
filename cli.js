@@ -47,7 +47,7 @@ githubRepos(cli.input[0], cli.flags).then(function (data) {
 			return;
 		}
 
-		if (!cli.flags.forks && !cli.flags.forks && repo.fork) {
+		if (!cli.flags.forks && !cli.flags.sources && repo.fork) {
 			repo.name += chalk.dim(' (fork)');
 		}
 
