@@ -26,7 +26,7 @@ module.exports = function (user, opts) {
 	opts = opts || {};
 
 	if (typeof user !== 'string') {
-		return Promise.reject(new Error('User is required'));
+		return Promise.reject(new TypeError('Expected a string'));
 	}
 
 	return getRepos(user, opts);
