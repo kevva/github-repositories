@@ -1,51 +1,33 @@
 'use strict';
 var ghGot = require('gh-got');
+var Promise = require('pinkie-promise');
 
-function getRepos(user, opts, cb) {
+function getRepos(user, opts) {
 	var page = 1;
 	var ret = [];
 
-	(function loop() {
+	return (function loop() {
 		var url = 'users/' + user + '/repos?&per_page=100&page=' + page;
 
-		ghGot(url, opts, function (err, data, res) {
-			if (err) {
-				cb(err);
-				return;
-			}
-
-			ret = ret.concat(data);
+		return ghGot(url, opts).then(function (res) {
+			ret = ret.concat(res.body);
 
 			if (res.headers.link && res.headers.link.indexOf('next') !== -1) {
 				page++;
-				loop();
-				return;
+				return loop();
 			}
 
-			cb(null, ret);
+			return ret;
 		});
-	}());
-
+	})();
 }
 
-module.exports = function (user, opts, cb) {
+module.exports = function (user, opts) {
 	opts = opts || {};
 
 	if (typeof user !== 'string') {
-		throw new Error('User is required');
+		return Promise.reject(new Error('User is required'));
 	}
 
-	if (typeof opts === 'function') {
-		cb = opts;
-		opts = {};
-	}
-
-	getRepos(user, opts, function (err, data) {
-		if (err) {
-			cb(err);
-			return;
-		}
-
-		cb(null, data);
-	});
+	return getRepos(user, opts);
 };

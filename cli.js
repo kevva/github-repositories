@@ -35,12 +35,7 @@ if (!cli.input[0]) {
 	process.exit(1);
 }
 
-githubRepos(cli.input[0], cli.flags, function (err, data) {
-	if (err) {
-		console.error(err.message);
-		process.exit(1);
-	}
-
+githubRepos(cli.input[0], cli.flags).then(function (data) {
 	data.forEach(function (repo) {
 		if (cli.flags.forks && !repo.fork) {
 			return;
