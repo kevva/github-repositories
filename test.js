@@ -1,35 +1,29 @@
-'use strict';
-var test = require('ava');
-var githubRepos = require('./');
+import test from 'ava';
+import githubRepos from './';
 
-test('user with more than 100 repos', function (t) {
-	t.plan(1);
-	var token = '523ef691191741c99d5afbcfe58079bfa0038771';
+test('user with more than 100 repos', async t => {
+	const token = '523ef691191741c99d5afbcfe58079bfa0038771';
+	const repos = await githubRepos('kevva', {token: token});
 
-	githubRepos('kevva', {token: token}).then(function (data) {
-		t.assert(data.length, data.length);
-	});
+	t.ok(repos.length);
+	t.true(repos.length > 100);
 });
 
-test('user with lower than 100 repos', function (t) {
-	t.plan(1);
-	var token = '523ef691191741c99d5afbcfe58079bfa0038771';
+test('user with lower than 100 repos', async t => {
+	const token = '523ef691191741c99d5afbcfe58079bfa0038771';
+	const repos = await githubRepos('octocat', {token: token});
 
-	githubRepos('octocat', {token: token}).then(function (data) {
-		t.assert(data.length, data.length);
-	});
+	t.ok(repos.length);
+	t.true(repos.length < 100);
 });
 
-test('two requests should return same data', function (t) {
+test('two requests should return same data', async t => {
 	t.plan(3);
-	var token = '523ef691191741c99d5afbcfe58079bfa0038771';
+	const token = '523ef691191741c99d5afbcfe58079bfa0038771';
+	const repos1 = await githubRepos('octocat', {token: token});
+	const repos2 = await githubRepos('octocat', {token: token});
 
-	githubRepos('octocat', {token: token}).then(function (data1) {
-		t.assert(data1.length, data1.length);
-
-		githubRepos('octocat', {token: token}).then(function (data2) {
-			t.assert(data2.length, data2.length);
-			t.assert(data1.length === data2.length);
-		});
-	});
+	t.ok(repos1.length);
+	t.ok(repos2.length);
+	t.same(repos1, repos2);
 });
