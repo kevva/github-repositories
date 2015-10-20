@@ -63,8 +63,10 @@ $ github-repositories --help
 
   Options
     -f, --forks      Only list forks
+    -r, --repos      Only display repository names
     -s, --sources    Only list sources
     -t, --token      GitHub authentication token
+    -u, --urls       Only display URLs
 ```
 
 

@@ -11,8 +11,10 @@ var cli = meow([
 	'',
 	'Options',
 	'  -f, --forks      Only list forks',
+	'  -r, --repos      Only display repository names',
 	'  -s, --sources    Only list sources',
-	'  -t, --token      GitHub authentication token'
+	'  -t, --token      GitHub authentication token',
+	'  -u, --urls       Only display URLs'
 ], {
 	boolean: [
 		'forks',
@@ -23,8 +25,10 @@ var cli = meow([
 	],
 	alias: {
 		f: 'forks',
+		r: 'repos',
 		s: 'sources',
-		t: 'token'
+		t: 'token',
+		u: 'urls'
 	}
 });
 
@@ -45,6 +49,16 @@ githubRepos(cli.input[0], cli.flags).then(function (data) {
 
 		if (!cli.flags.forks && !cli.flags.forks && repo.fork) {
 			repo.name += chalk.dim(' (fork)');
+		}
+
+		if (cli.flags.repos) {
+			console.log(repo.name);
+			return;
+		}
+
+		if (cli.flags.urls) {
+			console.log(repo.html_url);
+			return;
 		}
 
 		console.log(repo.name + ' ' + chalk.dim(repo.html_url));
