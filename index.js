@@ -2,9 +2,15 @@
 var ghGot = require('gh-got');
 var Promise = require('pinkie-promise');
 
-function getRepos(user, opts) {
+module.exports = function (user, opts) {
+	opts = opts || {};
+
 	var page = 1;
 	var ret = [];
+
+	if (typeof user !== 'string') {
+		return Promise.reject(new TypeError('Expected a string'));
+	}
 
 	return (function loop() {
 		var url = 'users/' + user + '/repos?&per_page=100&page=' + page;
@@ -20,14 +26,4 @@ function getRepos(user, opts) {
 			return ret;
 		});
 	})();
-}
-
-module.exports = function (user, opts) {
-	opts = opts || {};
-
-	if (typeof user !== 'string') {
-		return Promise.reject(new TypeError('Expected a string'));
-	}
-
-	return getRepos(user, opts);
 };

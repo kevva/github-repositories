@@ -35,7 +35,9 @@ Type: `string`
 
 Username to fetch repos from.
 
-#### options.token
+#### options
+
+##### token
 
 Type: `string`
 
