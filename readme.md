@@ -13,9 +13,9 @@ $ npm install --save github-repositories
 ## Usage
 
 ```js
-var githubRepos = require('github-repositories');
+const githubRepos = require('github-repositories');
 
-githubRepos('kevva', function (err, data) {
+githubRepos('kevva').then(data => {
 	console.log(data);
 	//=> [{id: 29258368, name: 'animal-sounds', full_name: 'kevva/animal-sounds', ...}, ...]
 });
@@ -24,7 +24,9 @@ githubRepos('kevva', function (err, data) {
 
 ## API
 
-### githubRepos(user, [options], callback)
+### githubRepos(user, [options])
+
+Returns a promise for an array with the the repositories.
 
 #### user
 
@@ -42,16 +44,6 @@ up to 60 unauthenticated request per hour. This is also required for accessing p
 repos.
 
 If you don't have a token you can generate a new one [here](https://github.com/settings/tokens/new).
-
-#### callback(err, data)
-
-Type: `function`
-
-##### data
-
-Type: `array`
-
-Contains an array with all Github repos.
 
 
 ## CLI
