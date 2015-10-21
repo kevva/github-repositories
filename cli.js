@@ -18,7 +18,9 @@ var cli = meow([
 ], {
 	boolean: [
 		'forks',
-		'sources'
+		'repos',
+		'sources',
+		'urls'
 	],
 	string: [
 		'token'
