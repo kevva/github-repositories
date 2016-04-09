@@ -1,6 +1,6 @@
 {
   "name": "github-repositories",
-  "version": "2.1.2",
+  "version": "3.0.0",
   "description": "Get all Github repos from a user",
   "license": "MIT",
   "repository": "kevva/github-repositories",
