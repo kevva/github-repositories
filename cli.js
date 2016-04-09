@@ -1,21 +1,21 @@
 #!/usr/bin/env node
 'use strict';
-var chalk = require('chalk');
-var meow = require('meow');
-var githubRepos = require('./');
+const chalk = require('chalk');
+const meow = require('meow');
+const githubRepos = require('./');
 
-var cli = meow([
-	'Usage',
-	'  $ github-repositories kevva',
-	'  $ github-repositories kevva --token 523ef69119eadg12',
-	'',
-	'Options',
-	'  -f, --forks      Only list forks',
-	'  -r, --repos      Only display repository names',
-	'  -s, --sources    Only list sources',
-	'  -t, --token      GitHub authentication token',
-	'  -u, --urls       Only display URLs'
-], {
+const cli = meow(`
+	Usage
+	  $ github-repositories kevva
+	  $ github-repositories kevva --token 523ef69119eadg12
+
+	Options
+	  -f, --forks      Only list forks
+	  -r, --repos      Only display repository names
+	  -s, --sources    Only list sources
+	  -t, --token      GitHub authentication token
+	  -u, --urls       Only display URL
+`, {
 	boolean: [
 		'forks',
 		'repos',
@@ -34,35 +34,35 @@ var cli = meow([
 	}
 });
 
-if (!cli.input[0]) {
+if (cli.input.length === 0) {
 	console.error('User required');
 	process.exit(1);
 }
 
-githubRepos(cli.input[0], cli.flags).then(function (data) {
-	data.forEach(function (repo) {
-		if (cli.flags.forks && !repo.fork) {
+githubRepos(cli.input[0], cli.flags).then(data => {
+	data.forEach(x => {
+		if (cli.flags.forks && !x.fork) {
 			return;
 		}
 
-		if (cli.flags.sources && repo.fork) {
+		if (cli.flags.sources && x.fork) {
 			return;
 		}
 
-		if (!cli.flags.forks && !cli.flags.sources && repo.fork) {
-			repo.name += chalk.dim(' (fork)');
+		if (!cli.flags.forks && !cli.flags.sources && x.fork) {
+			x.name += chalk.dim(' (fork)');
 		}
 
 		if (cli.flags.repos) {
-			console.log(repo.name);
+			console.log(x.name);
 			return;
 		}
 
 		if (cli.flags.urls) {
-			console.log(repo.html_url);
+			console.log(x.html_url);
 			return;
 		}
 
-		console.log(repo.name + ' ' + chalk.dim(repo.html_url));
+		console.log(`${x.name} ${chalk.dim(x.html_url)}`);
 	});
 });
