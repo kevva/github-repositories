@@ -9,10 +9,10 @@
     "email": "kevinmartensson@gmail.com",
     "url": "github.com/kevva"
   },
+  "bin": "cli.js",
   "engines": {
     "node": ">=4"
   },
-  "bin": "cli.js",
   "scripts": {
     "test": "xo && ava"
   },

@@ -10,11 +10,11 @@ const cli = meow(`
 	  $ github-repositories kevva --token 523ef69119eadg12
 
 	Options
-	  -f, --forks      Only list forks
-	  -r, --repos      Only display repository names
-	  -s, --sources    Only list sources
-	  -t, --token      GitHub authentication token
-	  -u, --urls       Only display URL
+	  -f, --forks    Only list forks
+	  -r, --repos    Only display repository names
+	  -s, --sources  Only list sources
+	  -t, --token    GitHub authentication token
+	  -u, --urls     Only display URL
 `, {
 	boolean: [
 		'forks',
@@ -40,7 +40,7 @@ if (cli.input.length === 0) {
 }
 
 githubRepos(cli.input[0], cli.flags).then(data => {
-	data.forEach(x => {
+	for (const x of data) {
 		if (cli.flags.forks && !x.fork) {
 			return;
 		}
@@ -64,5 +64,5 @@ githubRepos(cli.input[0], cli.flags).then(data => {
 		}
 
 		console.log(`${x.name} ${chalk.dim(x.html_url)}`);
-	});
+	}
 });

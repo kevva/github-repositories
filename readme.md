@@ -13,9 +13,9 @@ $ npm install --save github-repositories
 ## Usage
 
 ```js
-const githubRepos = require('github-repositories');
+const githubRepositories = require('github-repositories');
 
-githubRepos('kevva').then(data => {
+githubRepositories('kevva').then(data => {
 	console.log(data);
 	//=> [{id: 29258368, name: 'animal-sounds', full_name: 'kevva/animal-sounds', ...}, ...]
 });
@@ -24,13 +24,12 @@ githubRepos('kevva').then(data => {
 
 ## API
 
-### githubRepos(user, [options])
+### githubRepositories(user, [options])
 
 Returns a promise for an array with the the repositories.
 
 #### user
 
-*Required*  
 Type: `string`
 
 Username to fetch repos from.
@@ -62,11 +61,11 @@ $ github-repositories --help
     $ github-repositories kevva --token 523ef69119eadg12
 
   Options
-    -f, --forks      Only list forks
-    -r, --repos      Only display repository names
-    -s, --sources    Only list sources
-    -t, --token      GitHub authentication token
-    -u, --urls       Only display URLs
+    -f, --forks    Only list forks
+    -r, --repos    Only display repository names
+    -s, --sources  Only list sources
+    -t, --token    GitHub authentication token
+    -u, --urls     Only display URLs
 ```
 
 

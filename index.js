@@ -8,7 +8,7 @@ module.exports = (user, opts) => {
 	let ret = [];
 
 	if (typeof user !== 'string') {
-		return Promise.reject(new TypeError('Expected a string'));
+		return Promise.reject(new TypeError(`Expected a \`string\`, got \`${typeof user}\``));
 	}
 
 	return (function loop() {
@@ -17,7 +17,7 @@ module.exports = (user, opts) => {
 		return ghGot(url, opts).then(res => {
 			ret = ret.concat(res.body);
 
-			if (res.headers.link && res.headers.link.indexOf('next') !== -1) {
+			if (res.headers.link && res.headers.link.includes('next')) {
 				page++;
 				return loop();
 			}
