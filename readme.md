@@ -36,8 +36,11 @@ Username to fetch repos from.
 
 #### options
 
+Type: `object`
+
 ##### token
 
+Name: `token`
 Type: `string`
 
 Token to authenticate with. Use this to increase the request count. Github supports
