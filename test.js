@@ -9,6 +9,13 @@ test('user with more than 100 repos', async t => {
 	t.true(repos.length > 100);
 });
 
+test('organization using organization api', async t => {
+	const token = '523ef691191741c99d5afbcfe58079bfa0038771';
+	const repos = await m('OpenSourceDesign', {token});
+
+	t.truthy(repos.length);
+});
+
 test('user with lower than 100 repos', async t => {
 	const token = '523ef691191741c99d5afbcfe58079bfa0038771';
 	const repos = await m('octocat', {token});

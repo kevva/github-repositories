@@ -1,5 +1,6 @@
 'use strict';
 const ghGot = require('gh-got');
+const isGithubUserOrOrg = require('is-github-user-or-org');
 
 module.exports = (user, opts) => {
 	opts = opts || {};
@@ -11,18 +12,22 @@ module.exports = (user, opts) => {
 		return Promise.reject(new TypeError(`Expected a \`string\`, got \`${typeof user}\``));
 	}
 
-	return (function loop() {
-		const url = `users/${user}/repos?&per_page=100&page=${page}`;
+	return isGithubUserOrOrg(user, opts).then(res => {
+		const type = (res === 'User') ? 'users' : 'orgs';
 
-		return ghGot(url, opts).then(res => {
-			ret = ret.concat(res.body);
+		return (function loop() {
+			const url = `${type}/${user}/repos?&per_page=100&page=${page}`;
 
-			if (res.headers.link && res.headers.link.includes('next')) {
-				page++;
-				return loop();
-			}
+			return ghGot(url, opts).then(res => {
+				ret = ret.concat(res.body);
 
-			return ret;
-		});
-	})();
+				if (res.headers.link && res.headers.link.includes('next')) {
+					page++;
+					return loop();
+				}
+
+				return ret;
+			});
+		})();
+	});
 };
