@@ -53,7 +53,7 @@ Default: https://api.github.com/
 
 To support GitHub Enterprise.
 
-Can be set globally with the GITHUB_ENDPOINT environment variable.
+Can be set globally with the `GITHUB_ENDPOINT` environment variable.
 
 ## CLI
 
