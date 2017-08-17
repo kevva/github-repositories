@@ -26,7 +26,7 @@ githubRepositories('kevva').then(data => {
 
 ### githubRepositories(user, [options])
 
-Returns a promise for an array with the the repositories.
+Returns a `Promise` for an `Array` with the the repositories.
 
 #### user
 
@@ -35,6 +35,8 @@ Type: `string`
 Username to fetch repos from.
 
 #### options
+
+Type: `Object`
 
 ##### token
 
@@ -48,12 +50,13 @@ If you don't have a token you can generate a new one [here](https://github.com/s
 
 ##### endpoint
 
-Type: `string`<br />
-Default: https://api.github.com/
+Type: `string`<br>
+Default: `https://api.github.com/`
 
-To support GitHub Enterprise.
+To support [GitHub Enterprise](https://enterprise.github.com/).
 
 Can be set globally with the `GITHUB_ENDPOINT` environment variable.
+
 
 ## CLI
 
