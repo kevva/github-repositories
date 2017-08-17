@@ -46,6 +46,14 @@ repos.
 
 If you don't have a token you can generate a new one [here](https://github.com/settings/tokens/new).
 
+##### `endpoint`
+
+Type: `string`
+Default: https://api.github.com/
+
+To support GitHub Enterprise.
+
+Can be set globally with the `GITHUB_ENDPOINT` environment variable.
 
 ## CLI
 
