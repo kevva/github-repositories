@@ -26,6 +26,7 @@ const cli = meow(`
 		'token'
 	],
 	alias: {
+		h: 'help',
 		f: 'forks',
 		r: 'repos',
 		s: 'sources',
