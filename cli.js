@@ -31,7 +31,8 @@ const cli = meow(`
 		r: 'repos',
 		s: 'sources',
 		t: 'token',
-		u: 'urls'
+		u: 'urls',
+		v: 'version'
 	}
 });
 
