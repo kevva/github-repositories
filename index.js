@@ -2,31 +2,31 @@
 const ghGot = require('gh-got');
 const isGithubUserOrOrg = require('is-github-user-or-org');
 
-module.exports = (user, opts) => {
-	opts = opts || {};
+module.exports = (name, options) => {
+	options = options || {};
 
 	let page = 1;
-	let ret = [];
+	let returnValue = [];
 
-	if (typeof user !== 'string') {
-		return Promise.reject(new TypeError(`Expected a \`string\`, got \`${typeof user}\``));
+	if (typeof name !== 'string') {
+		return Promise.reject(new TypeError(`Expected \`name\` to be of type \`string\` but received type \`${typeof name}\``));
 	}
 
-	return isGithubUserOrOrg(user, opts).then(res => {
-		const type = (res === 'User') ? 'users' : 'orgs';
+	return isGithubUserOrOrg(name, options).then(userType => {
+		const type = (userType === 'User') ? 'users' : 'orgs';
 
 		return (function loop() {
-			const url = `${type}/${user}/repos?&per_page=100&page=${page}`;
+			const url = `${type}/${name}/repos?&per_page=100&page=${page}`;
 
-			return ghGot(url, opts).then(res => {
-				ret = ret.concat(res.body);
+			return ghGot(url, options).then(response => {
+				returnValue = returnValue.concat(response.body);
 
-				if (res.headers.link && res.headers.link.includes('next')) {
+				if (response.headers.link && response.headers.link.includes('next')) {
 					page++;
 					return loop();
 				}
 
-				return ret;
+				return returnValue;
 			});
 		})();
 	});

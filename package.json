@@ -1,44 +1,41 @@
 {
-  "name": "github-repositories",
-  "version": "3.0.0",
-  "description": "Get all Github repos from a user",
-  "license": "MIT",
-  "repository": "kevva/github-repositories",
-  "author": {
-    "name": "Kevin Mårtensson",
-    "email": "kevinmartensson@gmail.com",
-    "url": "github.com/kevva"
-  },
-  "bin": "cli.js",
-  "engines": {
-    "node": ">=4"
-  },
-  "scripts": {
-    "test": "xo && ava"
-  },
-  "files": [
-    "index.js",
-    "cli.js"
-  ],
-  "keywords": [
-    "cli-app",
-    "cli",
-    "api",
-    "github",
-    "repo",
-    "repositories"
-  ],
-  "dependencies": {
-    "chalk": "^1.0.0",
-    "gh-got": "^3.0.0",
-    "is-github-user-or-org": "^1.0.0",
-    "meow": "^3.3.0"
-  },
-  "devDependencies": {
-    "ava": "*",
-    "xo": "*"
-  },
-  "xo": {
-    "esnext": true
-  }
+	"name": "github-repositories",
+	"version": "3.0.0",
+	"description": "Get all Github repos from a user or an organization",
+	"license": "MIT",
+	"repository": "kevva/github-repositories",
+	"author": {
+		"name": "Kevin Mårtensson",
+		"email": "kevinmartensson@gmail.com",
+		"url": "github.com/kevva"
+	},
+	"bin": "cli.js",
+	"engines": {
+		"node": ">=4"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js",
+		"cli.js"
+	],
+	"keywords": [
+		"cli-app",
+		"cli",
+		"api",
+		"github",
+		"repo",
+		"repositories"
+	],
+	"dependencies": {
+		"chalk": "^1.0.0",
+		"gh-got": "^3.0.0",
+		"is-github-user-or-org": "^1.0.0",
+		"meow": "^3.3.0"
+	},
+	"devDependencies": {
+		"ava": "^0.25.0",
+		"xo": "^0.20.3"
+	}
 }

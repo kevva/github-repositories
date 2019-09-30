@@ -1,12 +1,12 @@
 # github-repositories [![Build Status](https://travis-ci.org/kevva/github-repositories.svg?branch=master)](https://travis-ci.org/kevva/github-repositories)
 
-> Get all GitHub repos from a user
+> Get all GitHub repos from a user or an organization
 
 
 ## Install
 
 ```
-$ npm install --save github-repositories
+$ npm install github-repositories
 ```
 
 
@@ -15,28 +15,28 @@ $ npm install --save github-repositories
 ```js
 const githubRepositories = require('github-repositories');
 
-githubRepositories('kevva').then(data => {
-	console.log(data);
-	//=> [{id: 29258368, name: 'animal-sounds', full_name: 'kevva/animal-sounds', ...}, ...]
-});
+(async () => {
+	console.log(await githubRepositories('kevva'));
+	//=> [{id: 29258368, name: 'animal-sounds', full_name: 'kevva/animal-sounds', …}, …]
+})();
 ```
 
 
 ## API
 
-### githubRepositories(user, [options])
+### githubRepositories(name, options?)
 
-Returns a `Promise` for an `Array` with the the repositories.
+Returns a `Promise<object[]>` with the the repositories.
 
-#### user
+#### name
 
 Type: `string`
 
-Username to fetch repos from.
+Username or organization to fetch repos from.
 
 #### options
 
-Type: `Object`
+Type: `object`
 
 ##### token
 
@@ -78,8 +78,3 @@ $ github-repositories --help
     -t, --token    GitHub authentication token
     -u, --urls     Only display URLs
 ```
-
-
-## License
-
-MIT © [Kevin Mårtensson](https://github.com/kevva)

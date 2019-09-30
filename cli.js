@@ -2,7 +2,7 @@
 'use strict';
 const chalk = require('chalk');
 const meow = require('meow');
-const githubRepos = require('./');
+const githubRepos = require('.');
 
 const cli = meow(`
 	Usage
@@ -41,30 +41,30 @@ if (cli.input.length === 0) {
 	process.exit(1);
 }
 
-githubRepos(cli.input[0], cli.flags).then(data => {
-	for (const x of data) {
-		if (cli.flags.forks && !x.fork) {
+githubRepos(cli.input[0], cli.flags).then(repositories => {
+	for (const repository of repositories) {
+		if (cli.flags.forks && !repository.fork) {
 			return;
 		}
 
-		if (cli.flags.sources && x.fork) {
+		if (cli.flags.sources && repository.fork) {
 			return;
 		}
 
-		if (!cli.flags.forks && !cli.flags.sources && x.fork) {
-			x.name += chalk.dim(' (fork)');
+		if (!cli.flags.forks && !cli.flags.sources && repository.fork) {
+			repository.name += chalk.dim(' (fork)');
 		}
 
 		if (cli.flags.repos) {
-			console.log(x.name);
+			console.log(repository.name);
 			return;
 		}
 
 		if (cli.flags.urls) {
-			console.log(x.html_url);
+			console.log(repository.html_url);
 			return;
 		}
 
-		console.log(`${x.name} ${chalk.dim(x.html_url)}`);
+		console.log(`${repository.name} ${chalk.dim(repository.html_url)}`);
 	}
 });
