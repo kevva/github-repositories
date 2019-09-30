@@ -38,6 +38,13 @@ Username or organization to fetch repos from.
 
 Type: `object`
 
+##### sort
+
+Type: `string`<br>
+Default: `full_name`
+
+Can be one of `created`, `updated`, `pushed`, `full_name`.
+
 ##### token
 
 Type: `string`

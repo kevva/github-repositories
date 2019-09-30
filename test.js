@@ -31,3 +31,8 @@ test('two requests should return same data', async t => {
 	t.truthy(second.length);
 	t.deepEqual(first, second);
 });
+
+test('`sort` option', async t => {
+	const repos = await githubRepositories('kevva', {sort: 'created'});
+	t.is(repos[repos.length - 1].name, 'download');
+});
