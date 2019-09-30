@@ -2,32 +2,26 @@
 const ghGot = require('gh-got');
 const isGithubUserOrOrg = require('is-github-user-or-org');
 
-module.exports = (name, options) => {
-	options = options || {};
+const fetchRepos = async (url, options, repos = [], page = 1) => {
+	const {body: currentRepos, headers: {link}} = await ghGot(url, {
+		...options,
+		query: {page, per_page: 100} // eslint-disable-line camelcase
+	});
 
-	let page = 1;
-	let returnValue = [];
-
-	if (typeof name !== 'string') {
-		return Promise.reject(new TypeError(`Expected \`name\` to be of type \`string\` but received type \`${typeof name}\``));
+	if (link && link.includes('next')) {
+		return fetchRepos(url, options, repos.concat(currentRepos), page + 1);
 	}
 
-	return isGithubUserOrOrg(name, options).then(userType => {
-		const type = (userType === 'User') ? 'users' : 'orgs';
+	return repos.concat(currentRepos);
+};
 
-		return (function loop() {
-			const url = `${type}/${name}/repos?&per_page=100&page=${page}`;
+module.exports = async (name, options = {}) => {
+	if (typeof name !== 'string') {
+		throw new TypeError(`Expected \`name\` to be of type \`string\` but received type \`${typeof name}\``);
+	}
 
-			return ghGot(url, options).then(response => {
-				returnValue = returnValue.concat(response.body);
+	const type = (await isGithubUserOrOrg(name, options) === 'User') ? 'users' : 'orgs';
+	const url = `${type}/${name}/repos`;
 
-				if (response.headers.link && response.headers.link.includes('next')) {
-					page++;
-					return loop();
-				}
-
-				return returnValue;
-			});
-		})();
-	});
+	return fetchRepos(url, options);
 };

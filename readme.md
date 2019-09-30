@@ -56,25 +56,3 @@ Default: `https://api.github.com/`
 To support [GitHub Enterprise](https://enterprise.github.com/).
 
 Can be set globally with the `GITHUB_ENDPOINT` environment variable.
-
-
-## CLI
-
-```
-$ npm install --global github-repositories
-```
-
-```
-$ github-repositories --help
-
-  Usage
-    $ github-repositories kevva
-    $ github-repositories kevva --token 523ef69119eadg12
-
-  Options
-    -f, --forks    Only list forks
-    -r, --repos    Only display repository names
-    -s, --sources  Only list sources
-    -t, --token    GitHub authentication token
-    -u, --urls     Only display URLs
-```

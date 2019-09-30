@@ -9,33 +9,27 @@
 		"email": "kevinmartensson@gmail.com",
 		"url": "github.com/kevva"
 	},
-	"bin": "cli.js",
 	"engines": {
-		"node": ">=4"
+		"node": ">=10"
 	},
 	"scripts": {
 		"test": "xo && ava"
 	},
 	"files": [
-		"index.js",
-		"cli.js"
+		"index.js"
 	],
 	"keywords": [
-		"cli-app",
-		"cli",
 		"api",
 		"github",
 		"repo",
 		"repositories"
 	],
 	"dependencies": {
-		"chalk": "^1.0.0",
-		"gh-got": "^3.0.0",
-		"is-github-user-or-org": "^1.0.0",
-		"meow": "^3.3.0"
+		"gh-got": "^8.1.0",
+		"is-github-user-or-org": "^1.0.0"
 	},
 	"devDependencies": {
-		"ava": "^0.25.0",
-		"xo": "^0.20.3"
+		"ava": "^2.4.0",
+		"xo": "^0.25.3"
 	}
 }
