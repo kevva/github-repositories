@@ -45,6 +45,13 @@ Default: `full_name`
 
 Can be one of `created`, `updated`, `pushed`, `full_name`.
 
+##### direction
+
+Type: `string`<br>
+Default: `asc` when using `full_name`, otherwise `desc`
+
+Can be one of `asc` or `desc`.
+
 ##### token
 
 Type: `string`

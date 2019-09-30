@@ -36,3 +36,8 @@ test('`sort` option', async t => {
 	const repos = await githubRepositories('kevva', {sort: 'created'});
 	t.is(repos[repos.length - 1].name, 'download');
 });
+
+test('`direction` option', async t => {
+	const [repo] = await githubRepositories('kevva', {direction: 'asc', sort: 'created'});
+	t.is(repo.name, 'download');
+});

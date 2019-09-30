@@ -6,6 +6,7 @@ const fetchRepos = async (url, options = {}, repos = [], page = 1) => {
 	const {body: currentRepos, headers: {link}} = await ghGot(url, {
 		...options,
 		query: {
+			direction: options.direction,
 			page,
 			per_page: 100, // eslint-disable-line camelcase
 			sort: options.sort
