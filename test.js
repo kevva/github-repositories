@@ -11,7 +11,7 @@ test('user with more than 100 repos', async t => {
 
 test('organization using organization api', async t => {
 	const token = '523ef691191741c99d5afbcfe58079bfa0038771';
-	const repos = await m('OpenSourceDesign', {token});
+	const repos = await m('github', {token});
 
 	t.truthy(repos.length);
 });
