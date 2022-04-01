@@ -17,7 +17,7 @@ module.exports = async (name, {
 		userAgent: 'https://github.com/kevva/github-repositories'
 	});
 
-	const {Type: type} = await octokit.users.getByUsername({
+	const {data: {type}} = await octokit.users.getByUsername({
 		username: name
 	});
 
