@@ -25,8 +25,7 @@
 		"repositories"
 	],
 	"dependencies": {
-		"gh-got": "^8.1.0",
-		"is-github-user-or-org": "^1.0.0"
+		"@octokit/rest": "^18.12.0"
 	},
 	"devDependencies": {
 		"ava": "^2.4.0",

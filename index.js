@@ -1,37 +1,39 @@
 'use strict';
-const ghGot = require('gh-got');
-const isGithubUserOrOrg = require('is-github-user-or-org');
+const {Octokit} = require('@octokit/rest');
 
-const fetchRepos = async (url, options = {}, repos = [], page = 1) => {
-	const {body: currentRepos, headers: {link}} = await ghGot(url, {
-		...options,
-		query: {
-			direction: options.direction,
-			page,
-			per_page: 100, // eslint-disable-line camelcase
-			sort: options.sort
-		}
-	});
-
-	if (link && link.includes('next')) {
-		return fetchRepos(url, options, repos.concat(currentRepos), page + 1);
-	}
-
-	return repos.concat(currentRepos);
-};
-
-module.exports = async (name, options = {}) => {
-	options = {
-		sort: 'full_name',
-		...options
-	};
-
+module.exports = async (name, {
+	sort = 'full_name',
+	direction,
+	token: auth,
+	endpoint: baseUrl = process.env.GITHUB_ENDPOINT
+} = {}) => {
 	if (typeof name !== 'string') {
 		throw new TypeError(`Expected \`name\` to be of type \`string\` but received type \`${typeof name}\``);
 	}
 
-	const type = (await isGithubUserOrOrg(name, options) === 'User') ? 'users' : 'orgs';
-	const url = `${type}/${name}/repos`;
+	const octokit = new Octokit({
+		auth,
+		baseUrl,
+		userAgent: 'https://github.com/kevva/github-repositories'
+	});
 
-	return fetchRepos(url, options);
+	const {data: {type}} = await octokit.users.getByUsername({
+		username: name
+	});
+
+	const requestOptions = {
+		per_page: 100, // eslint-disable-line camelcase
+		sort,
+		direction
+	};
+
+	return type === 'User' ?
+		octokit.paginate(octokit.repos.listForUser, {
+			username: name,
+			...requestOptions
+		}) :
+		octokit.paginate(octokit.repos.listForOrg, {
+			org: name,
+			...requestOptions
+		});
 };
